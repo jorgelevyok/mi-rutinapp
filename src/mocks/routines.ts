@@ -6,6 +6,8 @@ export const seedRoutines: WorkoutRoutine[] = [
     id: 'routine_push',
     name: 'Push',
     restBetweenExercisesSeconds: 120,
+    timesPerWeek: 2,
+    completedAtDates: [],
     accentColor: colors.coralSoft,
     estimatedMinutes: 60,
     exercises: [
@@ -64,6 +66,8 @@ export const seedRoutines: WorkoutRoutine[] = [
     id: 'routine_pull',
     name: 'Pull',
     restBetweenExercisesSeconds: 120,
+    timesPerWeek: 2,
+    completedAtDates: [],
     accentColor: colors.mintSoft,
     estimatedMinutes: 60,
     exercises: [
@@ -133,6 +137,8 @@ export const seedRoutines: WorkoutRoutine[] = [
     id: 'routine_legs',
     name: 'Legs',
     restBetweenExercisesSeconds: 120,
+    timesPerWeek: 1,
+    completedAtDates: [],
     accentColor: colors.lilacSoft,
     estimatedMinutes: 70,
     exercises: [
@@ -214,7 +220,9 @@ export const seedRoutines: WorkoutRoutine[] = [
   {
     id: 'routine_full',
     name: 'Full Body',
-    restBetweenExercisesSeconds: 90,
+    restBetweenExercisesSeconds: 120,
+    timesPerWeek: 3,
+    completedAtDates: [],
     accentColor: colors.sandSoft,
     estimatedMinutes: 90,
     exercises: [

@@ -27,3 +27,46 @@ export function estimateRoutineMinutes(exerciseCount: number, restSecondsTotal: 
   const restMinutes = Math.round(restSecondsTotal / 60);
   return Math.max(20, workMinutes + restMinutes);
 }
+
+/** Start of the current week (Monday 00:00 local time). */
+export function getWeekStart(date = new Date()): Date {
+  const result = new Date(date);
+  result.setHours(0, 0, 0, 0);
+  const day = result.getDay();
+  const daysSinceMonday = day === 0 ? 6 : day - 1;
+  result.setDate(result.getDate() - daysSinceMonday);
+  return result;
+}
+
+export function getCompletionsThisWeek(completedAtDates: string[] | undefined): string[] {
+  if (!completedAtDates?.length) return [];
+  const weekStart = getWeekStart().getTime();
+  return completedAtDates.filter((iso) => {
+    const time = new Date(iso).getTime();
+    return !Number.isNaN(time) && time >= weekStart;
+  });
+}
+
+export function countCompletionsThisWeek(completedAtDates: string[] | undefined): number {
+  return getCompletionsThisWeek(completedAtDates).length;
+}
+
+export function isWeeklyTargetMet(
+  timesPerWeek: number,
+  completedAtDates: string[] | undefined,
+): boolean {
+  const target = Math.max(1, timesPerWeek);
+  return countCompletionsThisWeek(completedAtDates) >= target;
+}
+
+/** @deprecated Prefer countCompletionsThisWeek / isWeeklyTargetMet */
+export function isCompletedThisWeek(lastCompletedAt: string | null | undefined): boolean {
+  if (!lastCompletedAt) return false;
+  const completed = new Date(lastCompletedAt);
+  if (Number.isNaN(completed.getTime())) return false;
+  return completed >= getWeekStart();
+}
+
+export function formatWeeklyProgress(done: number, target: number): string {
+  return `${done}/${Math.max(1, target)}`;
+}

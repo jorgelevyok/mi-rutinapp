@@ -17,15 +17,40 @@ function cloneExercise(exercise: WorkoutExercise): WorkoutExercise {
 }
 
 const DEFAULT_REST_BETWEEN_EXERCISES = 120;
+const DEFAULT_TIMES_PER_WEEK = 1;
 
-function normalizeRoutine(routine: WorkoutRoutine): WorkoutRoutine {
+type LegacyRoutine = WorkoutRoutine & {
+  lastCompletedAt?: string | null;
+};
+
+function normalizeCompletedAtDates(routine: LegacyRoutine): string[] {
+  if (Array.isArray(routine.completedAtDates)) {
+    return routine.completedAtDates.filter((value) => typeof value === 'string');
+  }
+  if (typeof routine.lastCompletedAt === 'string') {
+    return [routine.lastCompletedAt];
+  }
+  return [];
+}
+
+function normalizeRoutine(routine: LegacyRoutine): WorkoutRoutine {
+  const timesPerWeek =
+    typeof routine.timesPerWeek === 'number' && routine.timesPerWeek > 0
+      ? Math.min(7, Math.round(routine.timesPerWeek))
+      : DEFAULT_TIMES_PER_WEEK;
+
   return {
-    ...routine,
+    id: routine.id,
+    name: routine.name,
+    exercises: routine.exercises.map(cloneExercise),
     restBetweenExercisesSeconds:
       typeof routine.restBetweenExercisesSeconds === 'number'
         ? Math.max(0, routine.restBetweenExercisesSeconds)
         : DEFAULT_REST_BETWEEN_EXERCISES,
-    exercises: routine.exercises.map(cloneExercise),
+    timesPerWeek,
+    completedAtDates: normalizeCompletedAtDates(routine),
+    accentColor: routine.accentColor,
+    estimatedMinutes: routine.estimatedMinutes,
   };
 }
 
@@ -83,6 +108,7 @@ export const routineService = {
     name: string;
     exercises: WorkoutExercise[];
     restBetweenExercisesSeconds?: number;
+    timesPerWeek?: number;
     accentColor?: string;
     estimatedMinutes?: number;
   }): Promise<WorkoutRoutine> {
@@ -90,11 +116,17 @@ export const routineService = {
     const accentIndex = cache.length % routineAccentColors.length;
     const restBetweenExercisesSeconds =
       input.restBetweenExercisesSeconds ?? DEFAULT_REST_BETWEEN_EXERCISES;
+    const timesPerWeek = Math.min(
+      7,
+      Math.max(1, Math.round(input.timesPerWeek ?? DEFAULT_TIMES_PER_WEEK)),
+    );
     const routine: WorkoutRoutine = {
       id: createId('routine'),
       name: input.name,
       exercises: input.exercises.map(cloneExercise),
       restBetweenExercisesSeconds: Math.max(0, restBetweenExercisesSeconds),
+      timesPerWeek,
+      completedAtDates: [],
       accentColor: input.accentColor ?? routineAccentColors[accentIndex],
       estimatedMinutes:
         input.estimatedMinutes ??
@@ -136,12 +168,18 @@ export const routineService = {
     const exercises = input.exercises ?? current.exercises;
     const restBetweenExercisesSeconds =
       input.restBetweenExercisesSeconds ?? current.restBetweenExercisesSeconds;
+    const timesPerWeek =
+      input.timesPerWeek !== undefined
+        ? Math.min(7, Math.max(1, Math.round(input.timesPerWeek)))
+        : current.timesPerWeek;
     const updated: WorkoutRoutine = {
       ...current,
       ...input,
       id: current.id,
       exercises: exercises.map(cloneExercise),
       restBetweenExercisesSeconds: Math.max(0, restBetweenExercisesSeconds),
+      timesPerWeek,
+      completedAtDates: input.completedAtDates ?? current.completedAtDates,
       estimatedMinutes:
         input.estimatedMinutes ??
         computeEstimatedMinutes(exercises, restBetweenExercisesSeconds),

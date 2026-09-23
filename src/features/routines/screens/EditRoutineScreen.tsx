@@ -35,6 +35,7 @@ export function EditRoutineScreen({ routineId }: EditRoutineScreenProps) {
         name: routine.name,
         exercises: routine.exercises,
         restBetweenExercisesSeconds: routine.restBetweenExercisesSeconds,
+        timesPerWeek: routine.timesPerWeek,
       }}
       onBack={() => router.back()}
       onSubmit={handleSubmit}

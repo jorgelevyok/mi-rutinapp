@@ -20,6 +20,10 @@ export interface WorkoutRoutine {
   exercises: WorkoutExercise[];
   /** Rest pause after finishing an exercise, before starting the next one. */
   restBetweenExercisesSeconds: number;
+  /** How many times this routine should be done each week. */
+  timesPerWeek: number;
+  /** ISO timestamps for each completed session (kept across weeks; filtered by week in UI). */
+  completedAtDates: string[];
   accentColor: string;
   estimatedMinutes: number;
 }
@@ -41,4 +45,5 @@ export interface RoutineFormValues {
   name: string;
   exercises: WorkoutExercise[];
   restBetweenExercisesSeconds: number;
+  timesPerWeek: number;
 }

@@ -7,8 +7,8 @@ export function CreateRoutineScreen() {
   const { createRoutine } = useRoutines();
 
   async function handleSubmit(values: RoutineFormValues) {
-    const routine = await createRoutine(values);
-    router.replace(`/routine/${routine.id}` as Href);
+    await createRoutine(values);
+    router.replace('/home' as Href);
   }
 
   return (

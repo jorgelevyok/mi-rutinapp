@@ -13,7 +13,7 @@ import { colors, fontFamilies, fontSizes, spacing } from '@/theme';
 import { useRoutines } from '@/features/routines/hooks/useRoutines';
 
 export function HomeScreen() {
-  const { routines } = useRoutines();
+  const { routines, toggleRoutineSessionThisWeek } = useRoutines();
 
   function openRoutine(routine: WorkoutRoutine) {
     router.push(`/routine/${routine.id}` as Href);
@@ -54,7 +54,11 @@ export function HomeScreen() {
           />
         }
         renderItem={({ item }) => (
-          <RoutineCard routine={item} onPress={() => openRoutine(item)} />
+          <RoutineCard
+            routine={item}
+            onPress={() => openRoutine(item)}
+            onToggleSessionThisWeek={() => void toggleRoutineSessionThisWeek(item.id)}
+          />
         )}
       />
 

@@ -13,6 +13,9 @@ export function useRoutines() {
   const updateSetField = useRoutineStore((state) => state.updateSetField);
   const replaceExercises = useRoutineStore((state) => state.replaceExercises);
   const setExerciseCompleted = useRoutineStore((state) => state.setExerciseCompleted);
+  const toggleRoutineSessionThisWeek = useRoutineStore(
+    (state) => state.toggleRoutineSessionThisWeek,
+  );
 
   return {
     routines,
@@ -27,5 +30,6 @@ export function useRoutines() {
     updateSetField,
     replaceExercises,
     setExerciseCompleted,
+    toggleRoutineSessionThisWeek,
   };
 }

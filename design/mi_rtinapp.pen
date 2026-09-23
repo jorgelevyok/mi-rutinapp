@@ -78,7 +78,7 @@
       "reusable": true,
       "fill": "#00000000",
       "layout": "vertical",
-      "gap": 6,
+      "gap": 8,
       "children": [
         {
           "type": "text",
@@ -119,6 +119,20 @@
               "height": 8
             }
           ]
+        },
+        {
+          "type": "text",
+          "id": "LOzKf",
+          "name": "Tagline",
+          "fill": "$coral",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "BUILD A STRONGER YOU",
+          "textAlign": "center",
+          "fontFamily": "$font-body",
+          "fontSize": 13,
+          "fontWeight": "600",
+          "letterSpacing": 3
         }
       ]
     },
@@ -197,7 +211,6 @@
       "name": "Routine Card",
       "reusable": true,
       "width": 350,
-      "height": 84,
       "fill": "$coral-soft",
       "cornerRadius": 22,
       "gap": 14,
@@ -222,26 +235,97 @@
               "gap": 4,
               "children": [
                 {
-                  "type": "text",
-                  "id": "fnEdm",
-                  "name": "Routine Name",
-                  "fill": "$ink",
-                  "content": "Push",
-                  "fontFamily": "$font-display",
-                  "fontSize": 22,
-                  "fontWeight": "700"
+                  "type": "frame",
+                  "id": "FwZug",
+                  "name": "Name Row",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fnEdm",
+                      "name": "Routine Name",
+                      "fill": "$ink",
+                      "content": "Push",
+                      "fontFamily": "$font-display",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UY8w1",
+                      "name": "Week Badge",
+                      "fill": "$ink",
+                      "cornerRadius": "$radius-pill",
+                      "gap": 4,
+                      "padding": [
+                        4,
+                        8
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "QpUB6",
+                          "name": "Badge Check",
+                          "width": 12,
+                          "height": 12,
+                          "icon": "check",
+                          "library": "lucide",
+                          "fill": "$white"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Q4jny",
+                          "name": "Badge Text",
+                          "fill": "$white",
+                          "content": "1/2 this week",
+                          "fontFamily": "$font-body",
+                          "fontSize": 10,
+                          "fontWeight": "600",
+                          "letterSpacing": 0.4
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "type": "text",
                   "id": "xZmCh",
                   "name": "Routine Meta",
                   "fill": "$ink-muted",
-                  "content": "5 exercises  ·  ~60 min",
+                  "content": "4 exercises  ·  ~60 min  ·  2x/week",
                   "fontFamily": "$font-body",
                   "fontSize": 13,
                   "fontWeight": "500"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "SFZbW",
+          "name": "Check Button",
+          "width": 36,
+          "height": 36,
+          "fill": "$white",
+          "cornerRadius": "$radius-full",
+          "stroke": "$sand-soft",
+          "strokeWidth": 1.5,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "g9otU",
+              "name": "Check Icon",
+              "width": 16,
+              "height": 16,
+              "icon": "check",
+              "library": "lucide",
+              "fill": "$ink-muted"
             }
           ]
         },
@@ -497,7 +581,10 @@
                 {
                   "type": "text",
                   "id": "CkOHM",
+                  "x": 61.5,
+                  "y": 434,
                   "name": "Tagline",
+                  "enabled": false,
                   "fill": "$coral",
                   "content": "BUILD A STRONGER YOU",
                   "textAlign": "center",
@@ -616,7 +703,7 @@
                       "descendants": {
                         "xHea4": {
                           "fontSize": 16,
-                          "letterSpacing": 1
+                          "letterSpacing": 1.5
                         },
                         "Qugm0": {
                           "alignItems": "start",
@@ -629,13 +716,20 @@
                         "o7qet": {
                           "width": 110,
                           "height": 5
+                        },
+                        "LOzKf": {
+                          "fontSize": 10,
+                          "letterSpacing": 1
                         }
                       }
                     },
                     {
                       "type": "text",
                       "id": "w7MFQ",
+                      "x": 0,
+                      "y": 107,
                       "name": "Subtitle",
+                      "enabled": false,
                       "fill": "$coral",
                       "content": "BUILD A STRONGER YOU",
                       "fontFamily": "$font-body",
@@ -709,8 +803,11 @@
                     "fnEdm": {
                       "content": "Push"
                     },
+                    "Q4jny": {
+                      "content": "1/2 this week"
+                    },
                     "xZmCh": {
-                      "content": "5 exercises  ·  ~60 min"
+                      "content": "4 exercises  ·  ~60 min  ·  2x/week"
                     }
                   }
                 },
@@ -725,8 +822,14 @@
                     "fnEdm": {
                       "content": "Pull"
                     },
+                    "UY8w1": {
+                      "enabled": false
+                    },
+                    "Q4jny": {
+                      "content": "0/2 this week"
+                    },
                     "xZmCh": {
-                      "content": "5 exercises  ·  ~60 min"
+                      "content": "5 exercises  ·  ~60 min  ·  2x/week"
                     }
                   }
                 },
@@ -741,8 +844,11 @@
                     "fnEdm": {
                       "content": "Legs"
                     },
+                    "Q4jny": {
+                      "content": "1/1 this week"
+                    },
                     "xZmCh": {
-                      "content": "6 exercises  ·  ~70 min"
+                      "content": "6 exercises  ·  ~70 min  ·  1x/week"
                     }
                   }
                 },
@@ -757,8 +863,11 @@
                     "fnEdm": {
                       "content": "Full Body"
                     },
+                    "Q4jny": {
+                      "content": "2/3 this week"
+                    },
                     "xZmCh": {
-                      "content": "8 exercises  ·  ~90 min"
+                      "content": "8 exercises  ·  ~90 min  ·  3x/week"
                     }
                   }
                 }
@@ -1219,6 +1328,7 @@
           "id": "EpSKi",
           "name": "Body",
           "width": "fill_container",
+          "height": "fill_container",
           "layout": "vertical",
           "gap": 20,
           "padding": [
@@ -1227,63 +1337,417 @@
             20,
             20
           ],
+          "justifyContent": "space_between",
           "children": [
             {
-              "id": "N0ymrp",
-              "type": "ref",
-              "ref": "tULaM",
-              "name": "Header",
-              "width": "fill_container",
-              "descendants": {
-                "yiB8h": {
-                  "content": "Create Routine"
-                }
-              }
-            },
-            {
               "type": "frame",
-              "id": "H6BD0D",
-              "name": "Name Section",
+              "id": "heEid",
+              "name": "Scroll Content",
+              "clip": true,
               "width": "fill_container",
+              "height": "fill_container",
               "layout": "vertical",
-              "gap": 8,
+              "gap": 20,
               "children": [
                 {
-                  "type": "text",
-                  "id": "NCuWS",
-                  "name": "Name Label",
-                  "fill": "$ink-muted",
-                  "content": "ROUTINE NAME",
-                  "fontFamily": "$font-body",
-                  "fontSize": 11,
-                  "fontWeight": "600",
-                  "letterSpacing": 0.6
+                  "id": "N0ymrp",
+                  "type": "ref",
+                  "ref": "tULaM",
+                  "name": "Header",
+                  "width": "fill_container",
+                  "descendants": {
+                    "yiB8h": {
+                      "content": "Create Routine"
+                    }
+                  }
                 },
                 {
                   "type": "frame",
-                  "id": "HFvma",
-                  "name": "Name Input",
+                  "id": "H6BD0D",
+                  "name": "Name Section",
                   "width": "fill_container",
-                  "height": 52,
-                  "fill": "$white",
-                  "cornerRadius": 16,
-                  "stroke": "$sand-soft",
-                  "strokeWidth": 1,
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "alignItems": "center",
+                  "layout": "vertical",
+                  "gap": 8,
                   "children": [
                     {
                       "type": "text",
-                      "id": "PUdTG",
-                      "name": "Name Placeholder",
-                      "fill": "$ink",
-                      "content": "Push Day",
+                      "id": "NCuWS",
+                      "name": "Name Label",
+                      "fill": "$ink-muted",
+                      "content": "ROUTINE NAME",
                       "fontFamily": "$font-body",
-                      "fontSize": 16,
-                      "fontWeight": "500"
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.6
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HFvma",
+                      "name": "Name Input",
+                      "width": "fill_container",
+                      "height": 52,
+                      "fill": "$white",
+                      "cornerRadius": 16,
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PUdTG",
+                          "name": "Name Placeholder",
+                          "fill": "$ink",
+                          "content": "Push Day",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hEoGu",
+                  "name": "Rest Between Exercises",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vCuCh",
+                      "name": "Rest Label",
+                      "fill": "$ink-muted",
+                      "content": "REST BETWEEN EXERCISES",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "grBvX",
+                      "name": "Rest Input",
+                      "width": "fill_container",
+                      "height": 52,
+                      "fill": "$white",
+                      "cornerRadius": 16,
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "N1QGjB",
+                          "name": "Rest Left",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "eDTeo",
+                              "name": "Rest Icon",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "$coral-soft",
+                              "cornerRadius": "$radius-full",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "JJUop",
+                                  "name": "Timer Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "timer",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "GGMjV",
+                              "name": "Rest Value",
+                              "fill": "$ink",
+                              "content": "120",
+                              "fontFamily": "$font-body",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "i474w",
+                          "name": "Rest Unit",
+                          "fill": "$ink-muted",
+                          "content": "seconds",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "rnDTB",
+                  "name": "Times Per Week",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QcCMN",
+                      "name": "Times Label",
+                      "fill": "$ink-muted",
+                      "content": "TIMES PER WEEK",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "w1T8R",
+                      "name": "Times Row",
+                      "width": "fill_container",
+                      "height": 52,
+                      "fill": "$white",
+                      "cornerRadius": 16,
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "LsKRr",
+                          "name": "Times Left",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "wmXSO",
+                              "name": "Times Icon",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "$mint-soft",
+                              "cornerRadius": "$radius-full",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "yVC3Z",
+                                  "name": "Repeat Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "repeat",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "AerYK",
+                              "name": "Times Value",
+                              "fill": "$ink",
+                              "content": "2",
+                              "fontFamily": "$font-body",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "K5X81",
+                              "name": "Times Unit",
+                              "fill": "$ink-muted",
+                              "content": "times",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "pYuTe",
+                          "name": "Stepper",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "JkK4C",
+                              "name": "Minus Button",
+                              "width": 36,
+                              "height": 36,
+                              "fill": "$bg",
+                              "cornerRadius": "$radius-full",
+                              "stroke": "$sand-soft",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "EaHNd",
+                                  "name": "Minus Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "minus",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "S1O9je",
+                              "name": "Plus Button",
+                              "width": 36,
+                              "height": 36,
+                              "fill": "$bg",
+                              "cornerRadius": "$radius-full",
+                              "stroke": "$sand-soft",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "T6ULg3",
+                                  "name": "Plus Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "plus",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f9c7y",
+                  "name": "Exercises Section",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "B6jZs",
+                      "name": "Section Header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "woSre",
+                          "name": "Exercises Title",
+                          "fill": "$ink",
+                          "content": "Exercises",
+                          "fontFamily": "$font-display",
+                          "fontSize": 22,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "H5zP7",
+                          "name": "Exercise Count",
+                          "fill": "$ink-muted",
+                          "content": "2",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "fz4Ub",
+                      "type": "ref",
+                      "ref": "Ew8Fr",
+                      "name": "Bench Press Card",
+                      "width": "fill_container",
+                      "fill": "$coral-soft",
+                      "descendants": {
+                        "U8BDF": {
+                          "content": "Bench Press"
+                        },
+                        "t8tD5": {
+                          "content": "Chest"
+                        },
+                        "JOOPO": {
+                          "enabled": false
+                        },
+                        "SYnw1": {
+                          "content": "4"
+                        },
+                        "DoarT": {
+                          "content": "8-10"
+                        },
+                        "u3vNh": {
+                          "content": "90s"
+                        }
+                      }
+                    },
+                    {
+                      "id": "czMfQ",
+                      "type": "ref",
+                      "ref": "Ew8Fr",
+                      "name": "Overhead Press Card",
+                      "width": "fill_container",
+                      "fill": "$lilac-soft",
+                      "descendants": {
+                        "U8BDF": {
+                          "content": "Overhead Press"
+                        },
+                        "t8tD5": {
+                          "content": "Shoulders"
+                        },
+                        "JOOPO": {
+                          "enabled": false
+                        },
+                        "SYnw1": {
+                          "content": "3"
+                        },
+                        "DoarT": {
+                          "content": "10-12"
+                        },
+                        "u3vNh": {
+                          "content": "75s"
+                        }
+                      }
                     }
                   ]
                 }
@@ -1291,98 +1755,22 @@
             },
             {
               "type": "frame",
-              "id": "f9c7y",
-              "name": "Exercises Section",
+              "id": "owETq",
+              "name": "Sticky Footer",
               "width": "fill_container",
+              "stroke": "$sand-soft",
+              "strokeWidth": {
+                "top": 1
+              },
               "layout": "vertical",
               "gap": 12,
+              "padding": [
+                12,
+                0,
+                0,
+                0
+              ],
               "children": [
-                {
-                  "type": "frame",
-                  "id": "B6jZs",
-                  "name": "Section Header",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "woSre",
-                      "name": "Exercises Title",
-                      "fill": "$ink",
-                      "content": "Exercises",
-                      "fontFamily": "$font-display",
-                      "fontSize": 22,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "H5zP7",
-                      "name": "Exercise Count",
-                      "fill": "$ink-muted",
-                      "content": "2",
-                      "fontFamily": "$font-body",
-                      "fontSize": 13,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "id": "fz4Ub",
-                  "type": "ref",
-                  "ref": "Ew8Fr",
-                  "name": "Bench Press Card",
-                  "width": "fill_container",
-                  "fill": "$coral-soft",
-                  "descendants": {
-                    "U8BDF": {
-                      "content": "Bench Press"
-                    },
-                    "t8tD5": {
-                      "content": "Chest"
-                    },
-                    "JOOPO": {
-                      "enabled": false
-                    },
-                    "SYnw1": {
-                      "content": "4"
-                    },
-                    "DoarT": {
-                      "content": "8-10"
-                    },
-                    "u3vNh": {
-                      "content": "90s"
-                    }
-                  }
-                },
-                {
-                  "id": "czMfQ",
-                  "type": "ref",
-                  "ref": "Ew8Fr",
-                  "name": "Overhead Press Card",
-                  "width": "fill_container",
-                  "fill": "$lilac-soft",
-                  "descendants": {
-                    "U8BDF": {
-                      "content": "Overhead Press"
-                    },
-                    "t8tD5": {
-                      "content": "Shoulders"
-                    },
-                    "JOOPO": {
-                      "enabled": false
-                    },
-                    "SYnw1": {
-                      "content": "3"
-                    },
-                    "DoarT": {
-                      "content": "10-12"
-                    },
-                    "u3vNh": {
-                      "content": "75s"
-                    }
-                  }
-                },
                 {
                   "type": "frame",
                   "id": "glXLA",
@@ -1417,23 +1805,23 @@
                       "fontWeight": "600"
                     }
                   ]
+                },
+                {
+                  "id": "F2I9Wu",
+                  "type": "ref",
+                  "ref": "Ce9jX",
+                  "name": "Save CTA",
+                  "width": "fill_container",
+                  "descendants": {
+                    "mgsYJ": {
+                      "enabled": false
+                    },
+                    "X90vWj": {
+                      "content": "Save Routine"
+                    }
+                  }
                 }
               ]
-            },
-            {
-              "id": "F2I9Wu",
-              "type": "ref",
-              "ref": "Ce9jX",
-              "name": "Save CTA",
-              "width": "fill_container",
-              "descendants": {
-                "mgsYJ": {
-                  "enabled": false
-                },
-                "X90vWj": {
-                  "content": "Save Routine"
-                }
-              }
             }
           ]
         }
@@ -1447,6 +1835,7 @@
       "name": "04 Edit Routine",
       "clip": true,
       "width": 390,
+      "height": 844,
       "fill": "$bg",
       "layout": "vertical",
       "alignItems": "center",
@@ -1463,6 +1852,7 @@
           "id": "RoGcJ",
           "name": "Body",
           "width": "fill_container",
+          "height": "fill_container",
           "layout": "vertical",
           "gap": 18,
           "padding": [
@@ -1471,63 +1861,461 @@
             20,
             20
           ],
+          "justifyContent": "space_between",
           "children": [
             {
-              "id": "Z53Un",
-              "type": "ref",
-              "ref": "tULaM",
-              "name": "Header",
-              "width": "fill_container",
-              "descendants": {
-                "yiB8h": {
-                  "content": "Edit Routine"
-                }
-              }
-            },
-            {
               "type": "frame",
-              "id": "ZDLhc",
-              "name": "Name Section",
+              "id": "U1ej62",
+              "name": "Scroll Content",
+              "clip": true,
               "width": "fill_container",
+              "height": "fill_container",
               "layout": "vertical",
-              "gap": 8,
+              "gap": 18,
               "children": [
                 {
-                  "type": "text",
-                  "id": "g27Hfa",
-                  "name": "Name Label",
-                  "fill": "$ink-muted",
-                  "content": "ROUTINE NAME",
-                  "fontFamily": "$font-body",
-                  "fontSize": 11,
-                  "fontWeight": "600",
-                  "letterSpacing": 0.6
+                  "id": "Z53Un",
+                  "type": "ref",
+                  "ref": "tULaM",
+                  "name": "Header",
+                  "width": "fill_container",
+                  "descendants": {
+                    "yiB8h": {
+                      "content": "Edit Routine"
+                    }
+                  }
                 },
                 {
                   "type": "frame",
-                  "id": "Xiq7t",
-                  "name": "Name Input",
+                  "id": "ZDLhc",
+                  "name": "Name Section",
                   "width": "fill_container",
-                  "height": 52,
-                  "fill": "$white",
-                  "cornerRadius": 16,
-                  "stroke": "$sand-soft",
-                  "strokeWidth": 1,
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "alignItems": "center",
+                  "layout": "vertical",
+                  "gap": 8,
                   "children": [
                     {
                       "type": "text",
-                      "id": "kSxWG",
-                      "name": "Name Value",
-                      "fill": "$ink",
-                      "content": "Push",
+                      "id": "g27Hfa",
+                      "name": "Name Label",
+                      "fill": "$ink-muted",
+                      "content": "ROUTINE NAME",
                       "fontFamily": "$font-body",
-                      "fontSize": 16,
-                      "fontWeight": "600"
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 0.6
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Xiq7t",
+                      "name": "Name Input",
+                      "width": "fill_container",
+                      "height": 52,
+                      "fill": "$white",
+                      "cornerRadius": 16,
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kSxWG",
+                          "name": "Name Value",
+                          "fill": "$ink",
+                          "content": "Push",
+                          "fontFamily": "$font-body",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yMc6J",
+                  "name": "Rest Between Exercises",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TB58t",
+                      "name": "Rest Label",
+                      "fill": "$ink-muted",
+                      "content": "REST BETWEEN EXERCISES",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BHiHS",
+                      "name": "Rest Input",
+                      "width": "fill_container",
+                      "height": 52,
+                      "fill": "$white",
+                      "cornerRadius": 16,
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ORwfU",
+                          "name": "Rest Left",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "iEiqh",
+                              "name": "Rest Icon",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "$coral-soft",
+                              "cornerRadius": "$radius-full",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "sCLWw",
+                                  "name": "Timer Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "timer",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "B61lnW",
+                              "name": "Rest Value",
+                              "fill": "$ink",
+                              "content": "120",
+                              "fontFamily": "$font-body",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "BjOAd",
+                          "name": "Rest Unit",
+                          "fill": "$ink-muted",
+                          "content": "seconds",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EdixA",
+                  "name": "Times Per Week",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "yIyTR",
+                      "name": "Times Label",
+                      "fill": "$ink-muted",
+                      "content": "TIMES PER WEEK",
+                      "fontFamily": "$font-body",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fTIfM",
+                      "name": "Times Row",
+                      "width": "fill_container",
+                      "height": 52,
+                      "fill": "$white",
+                      "cornerRadius": 16,
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1,
+                      "gap": 12,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "y9aiR",
+                          "name": "Times Left",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "CQm5U",
+                              "name": "Times Icon",
+                              "width": 32,
+                              "height": 32,
+                              "fill": "$mint-soft",
+                              "cornerRadius": "$radius-full",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "H4obuc",
+                                  "name": "Repeat Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "repeat",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "zwCrI",
+                              "name": "Times Value",
+                              "fill": "$ink",
+                              "content": "2",
+                              "fontFamily": "$font-body",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "rwy7T",
+                              "name": "Times Unit",
+                              "fill": "$ink-muted",
+                              "content": "times",
+                              "fontFamily": "$font-body",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "fZv61",
+                          "name": "Stepper",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "jKBBk",
+                              "name": "Minus Button",
+                              "width": 36,
+                              "height": 36,
+                              "fill": "$bg",
+                              "cornerRadius": "$radius-full",
+                              "stroke": "$sand-soft",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "Y1Fb5",
+                                  "name": "Minus Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "minus",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DyHPH",
+                              "name": "Plus Button",
+                              "width": 36,
+                              "height": 36,
+                              "fill": "$bg",
+                              "cornerRadius": "$radius-full",
+                              "stroke": "$sand-soft",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "HLPCg",
+                                  "name": "Plus Icon",
+                                  "width": 16,
+                                  "height": 16,
+                                  "icon": "plus",
+                                  "library": "lucide",
+                                  "fill": "$ink"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Bwume",
+                  "name": "Exercises Section",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "s5xLm6",
+                      "name": "Section Header",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S8uJx",
+                          "name": "Exercises Title",
+                          "fill": "$ink",
+                          "content": "Exercises",
+                          "fontFamily": "$font-display",
+                          "fontSize": 22,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mfRbL",
+                          "name": "Exercise Count",
+                          "fill": "$ink-muted",
+                          "content": "4",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "w3yhss",
+                      "type": "ref",
+                      "ref": "Ew8Fr",
+                      "name": "Bench Press Card",
+                      "width": "fill_container",
+                      "fill": "$coral-soft",
+                      "descendants": {
+                        "U8BDF": {
+                          "content": "Bench Press"
+                        },
+                        "t8tD5": {
+                          "content": "Chest"
+                        },
+                        "SYnw1": {
+                          "content": "4"
+                        },
+                        "DoarT": {
+                          "content": "8-10"
+                        },
+                        "u3vNh": {
+                          "content": "90s"
+                        }
+                      }
+                    },
+                    {
+                      "id": "P69xI",
+                      "type": "ref",
+                      "ref": "Ew8Fr",
+                      "name": "Incline Dumbbell Press Card",
+                      "width": "fill_container",
+                      "fill": "$beige-soft",
+                      "descendants": {
+                        "U8BDF": {
+                          "content": "Incline Dumbbell Press"
+                        },
+                        "t8tD5": {
+                          "content": "Chest"
+                        },
+                        "SYnw1": {
+                          "content": "3"
+                        },
+                        "DoarT": {
+                          "content": "10-12"
+                        },
+                        "u3vNh": {
+                          "content": "75s"
+                        }
+                      }
+                    },
+                    {
+                      "id": "KKSqX",
+                      "type": "ref",
+                      "ref": "Ew8Fr",
+                      "name": "Overhead Press Card",
+                      "width": "fill_container",
+                      "fill": "$lilac-soft",
+                      "descendants": {
+                        "U8BDF": {
+                          "content": "Overhead Press"
+                        },
+                        "t8tD5": {
+                          "content": "Shoulders"
+                        },
+                        "SYnw1": {
+                          "content": "3"
+                        },
+                        "DoarT": {
+                          "content": "8-10"
+                        },
+                        "u3vNh": {
+                          "content": "90s"
+                        }
+                      }
+                    },
+                    {
+                      "id": "lG69A",
+                      "type": "ref",
+                      "ref": "Ew8Fr",
+                      "name": "Tricep Pushdown Card",
+                      "width": "fill_container",
+                      "fill": "$mint-soft",
+                      "descendants": {
+                        "U8BDF": {
+                          "content": "Tricep Pushdown"
+                        },
+                        "t8tD5": {
+                          "content": "Triceps"
+                        },
+                        "SYnw1": {
+                          "content": "3"
+                        },
+                        "DoarT": {
+                          "content": "12-15"
+                        },
+                        "u3vNh": {
+                          "content": "60s"
+                        }
+                      }
                     }
                   ]
                 }
@@ -1535,142 +2323,22 @@
             },
             {
               "type": "frame",
-              "id": "Bwume",
-              "name": "Exercises Section",
+              "id": "nxCPC",
+              "name": "Sticky Footer",
               "width": "fill_container",
+              "stroke": "$sand-soft",
+              "strokeWidth": {
+                "top": 1
+              },
               "layout": "vertical",
-              "gap": 10,
+              "gap": 12,
+              "padding": [
+                12,
+                0,
+                0,
+                0
+              ],
               "children": [
-                {
-                  "type": "frame",
-                  "id": "s5xLm6",
-                  "name": "Section Header",
-                  "width": "fill_container",
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "S8uJx",
-                      "name": "Exercises Title",
-                      "fill": "$ink",
-                      "content": "Exercises",
-                      "fontFamily": "$font-display",
-                      "fontSize": 22,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "mfRbL",
-                      "name": "Exercise Count",
-                      "fill": "$ink-muted",
-                      "content": "4",
-                      "fontFamily": "$font-body",
-                      "fontSize": 13,
-                      "fontWeight": "600"
-                    }
-                  ]
-                },
-                {
-                  "id": "w3yhss",
-                  "type": "ref",
-                  "ref": "Ew8Fr",
-                  "name": "Bench Press Card",
-                  "width": "fill_container",
-                  "fill": "$coral-soft",
-                  "descendants": {
-                    "U8BDF": {
-                      "content": "Bench Press"
-                    },
-                    "t8tD5": {
-                      "content": "Chest"
-                    },
-                    "SYnw1": {
-                      "content": "4"
-                    },
-                    "DoarT": {
-                      "content": "8-10"
-                    },
-                    "u3vNh": {
-                      "content": "90s"
-                    }
-                  }
-                },
-                {
-                  "id": "P69xI",
-                  "type": "ref",
-                  "ref": "Ew8Fr",
-                  "name": "Incline Dumbbell Press Card",
-                  "width": "fill_container",
-                  "fill": "$beige-soft",
-                  "descendants": {
-                    "U8BDF": {
-                      "content": "Incline Dumbbell Press"
-                    },
-                    "t8tD5": {
-                      "content": "Chest"
-                    },
-                    "SYnw1": {
-                      "content": "3"
-                    },
-                    "DoarT": {
-                      "content": "10-12"
-                    },
-                    "u3vNh": {
-                      "content": "75s"
-                    }
-                  }
-                },
-                {
-                  "id": "KKSqX",
-                  "type": "ref",
-                  "ref": "Ew8Fr",
-                  "name": "Overhead Press Card",
-                  "width": "fill_container",
-                  "fill": "$lilac-soft",
-                  "descendants": {
-                    "U8BDF": {
-                      "content": "Overhead Press"
-                    },
-                    "t8tD5": {
-                      "content": "Shoulders"
-                    },
-                    "SYnw1": {
-                      "content": "3"
-                    },
-                    "DoarT": {
-                      "content": "8-10"
-                    },
-                    "u3vNh": {
-                      "content": "90s"
-                    }
-                  }
-                },
-                {
-                  "id": "lG69A",
-                  "type": "ref",
-                  "ref": "Ew8Fr",
-                  "name": "Tricep Pushdown Card",
-                  "width": "fill_container",
-                  "fill": "$mint-soft",
-                  "descendants": {
-                    "U8BDF": {
-                      "content": "Tricep Pushdown"
-                    },
-                    "t8tD5": {
-                      "content": "Triceps"
-                    },
-                    "SYnw1": {
-                      "content": "3"
-                    },
-                    "DoarT": {
-                      "content": "12-15"
-                    },
-                    "u3vNh": {
-                      "content": "60s"
-                    }
-                  }
-                },
                 {
                   "type": "frame",
                   "id": "tVV6Y",
@@ -1705,23 +2373,23 @@
                       "fontWeight": "600"
                     }
                   ]
+                },
+                {
+                  "id": "EclP9",
+                  "type": "ref",
+                  "ref": "Ce9jX",
+                  "name": "Save CTA",
+                  "width": "fill_container",
+                  "descendants": {
+                    "mgsYJ": {
+                      "enabled": false
+                    },
+                    "X90vWj": {
+                      "content": "Save Changes"
+                    }
+                  }
                 }
               ]
-            },
-            {
-              "id": "EclP9",
-              "type": "ref",
-              "ref": "Ce9jX",
-              "name": "Save CTA",
-              "width": "fill_container",
-              "descendants": {
-                "mgsYJ": {
-                  "enabled": false
-                },
-                "X90vWj": {
-                  "content": "Save Changes"
-                }
-              }
             }
           ]
         }
@@ -1732,9 +2400,10 @@
       "id": "j44AO",
       "x": 1880,
       "y": 480,
-      "name": "05 Active Workout",
+      "name": "05 Routine Detail",
       "clip": true,
       "width": 390,
+      "height": 844,
       "fill": "$bg",
       "layout": "vertical",
       "alignItems": "center",
@@ -1751,6 +2420,7 @@
           "id": "Avwr2",
           "name": "Body",
           "width": "fill_container",
+          "height": "fill_container",
           "layout": "vertical",
           "gap": 16,
           "padding": [
@@ -1761,96 +2431,84 @@
           ],
           "children": [
             {
-              "type": "frame",
-              "id": "wVMOc",
+              "id": "dWt5V",
+              "type": "ref",
+              "ref": "tULaM",
               "name": "Header",
               "width": "fill_container",
-              "justifyContent": "space_between",
+              "descendants": {
+                "yiB8h": {
+                  "content": "Push"
+                }
+              }
+            },
+            {
+              "type": "frame",
+              "id": "KV6C3",
+              "name": "Week Banner",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$white",
+              "cornerRadius": 16,
+              "stroke": "$sand-soft",
+              "strokeWidth": 1,
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
               "alignItems": "center",
               "children": [
                 {
                   "type": "frame",
-                  "id": "yUPad",
-                  "name": "Header Left",
-                  "gap": 12,
+                  "id": "SD2xI",
+                  "name": "Week Icon",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "$beige-soft",
+                  "cornerRadius": "$radius-full",
+                  "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "e2T4O",
-                      "name": "Back Button",
-                      "width": 40,
-                      "height": 40,
-                      "fill": "$white",
-                      "cornerRadius": 999,
-                      "effect": {
-                        "type": "shadow",
-                        "shadowType": "outer",
-                        "color": "#00000010",
-                        "offset": {
-                          "x": 0,
-                          "y": 2
-                        },
-                        "blur": 8
-                      },
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon",
-                          "id": "a6i5y",
-                          "name": "Back Icon",
-                          "width": 20,
-                          "height": 20,
-                          "icon": "arrow-left",
-                          "library": "lucide",
-                          "fill": "$ink"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "id": "o83Zx5",
-                      "name": "Routine Name",
-                      "fill": "$ink",
-                      "content": "Push",
-                      "fontFamily": "$font-display",
-                      "fontSize": 24,
-                      "fontWeight": "700"
+                      "type": "icon",
+                      "id": "N5wW1r",
+                      "name": "Week Check",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "check",
+                      "library": "lucide",
+                      "fill": "$ink-muted"
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "Rv0BY",
-                  "name": "Workout Timer",
-                  "fill": "$ink",
-                  "cornerRadius": 999,
-                  "gap": 6,
-                  "padding": [
-                    8,
-                    12
-                  ],
-                  "alignItems": "center",
+                  "id": "dHvAm",
+                  "name": "Week Texts",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
                   "children": [
                     {
-                      "type": "icon",
-                      "id": "jhoh7",
-                      "name": "Timer Icon",
-                      "width": 14,
-                      "height": 14,
-                      "icon": "timer",
-                      "library": "lucide",
-                      "fill": "$white"
+                      "type": "text",
+                      "id": "MbTdQ",
+                      "name": "Week Hint",
+                      "fill": "$ink-muted",
+                      "content": "THIS WEEK",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
                     },
                     {
                       "type": "text",
-                      "id": "e6ObBC",
-                      "name": "Timer Value",
-                      "fill": "$white",
-                      "content": "24:18",
+                      "id": "ux9g8",
+                      "name": "Week Label",
+                      "fill": "$ink",
+                      "content": "1/2 done — tap to add session",
                       "fontFamily": "$font-body",
-                      "fontSize": 13,
+                      "fontSize": 15,
                       "fontWeight": "600"
                     }
                   ]
@@ -1859,259 +2517,108 @@
             },
             {
               "type": "frame",
-              "id": "qM283",
-              "name": "Active Exercise",
+              "id": "H2k1Oy",
+              "name": "Edit Routine",
               "width": "fill_container",
-              "fill": "$coral-soft",
-              "cornerRadius": 24,
-              "layout": "vertical",
-              "gap": 14,
-              "padding": 16,
+              "height": 52,
+              "fill": "$bg",
+              "cornerRadius": 16,
+              "stroke": "$ink",
+              "strokeWidth": 2,
+              "gap": 8,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "SStIw",
+                  "name": "Edit Icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "pencil",
+                  "library": "lucide",
+                  "fill": "$ink"
+                },
+                {
+                  "type": "text",
+                  "id": "YEeYo",
+                  "name": "Edit Label",
+                  "fill": "$ink",
+                  "content": "Edit Routine",
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Y6uKZB",
+              "name": "Rest Between Exercises",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$white",
+              "cornerRadius": 16,
+              "stroke": "$sand-soft",
+              "strokeWidth": 1,
+              "gap": 12,
+              "padding": [
+                0,
+                16
+              ],
+              "alignItems": "center",
               "children": [
                 {
                   "type": "frame",
-                  "id": "Y00jUA",
-                  "name": "Active Top",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 4,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "XI06K",
-                      "name": "Now Label",
-                      "fill": "$coral",
-                      "content": "NOW",
-                      "fontFamily": "$font-body",
-                      "fontSize": 11,
-                      "fontWeight": "700",
-                      "letterSpacing": 0.8
-                    },
-                    {
-                      "type": "text",
-                      "id": "sh33Q",
-                      "name": "Exercise Title",
-                      "fill": "$ink",
-                      "content": "Bench Press",
-                      "fontFamily": "$font-display",
-                      "fontSize": 26,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "d1wed",
-                      "name": "Exercise Meta",
-                      "fill": "$ink-muted",
-                      "content": "Chest  ·  4 sets",
-                      "fontFamily": "$font-body",
-                      "fontSize": 13,
-                      "fontWeight": "500"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "aX79z",
-                  "name": "Column Headers",
-                  "width": "fill_container",
-                  "gap": 8,
-                  "padding": [
-                    0,
-                    12
-                  ],
+                  "id": "I3q0E",
+                  "name": "Rest Icon",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "$coral-soft",
+                  "cornerRadius": "$radius-full",
+                  "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "text",
-                      "id": "i956B",
-                      "name": "H Set",
-                      "fill": "$ink-muted",
-                      "textGrowth": "fixed-width",
-                      "width": 20,
-                      "content": "SET",
-                      "textAlign": "center",
-                      "fontFamily": "$font-body",
-                      "fontSize": 10,
-                      "fontWeight": "700",
-                      "letterSpacing": 0.5
-                    },
-                    {
-                      "type": "text",
-                      "id": "cPIGh",
-                      "name": "H Prev",
-                      "fill": "$ink-muted",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "PREVIOUS",
-                      "fontFamily": "$font-body",
-                      "fontSize": 10,
-                      "fontWeight": "700",
-                      "letterSpacing": 0.5
-                    },
-                    {
-                      "type": "text",
-                      "id": "zzEhJ",
-                      "name": "H Kg",
-                      "fill": "$ink-muted",
-                      "textGrowth": "fixed-width",
-                      "width": 64,
-                      "content": "KG",
-                      "textAlign": "center",
-                      "fontFamily": "$font-body",
-                      "fontSize": 10,
-                      "fontWeight": "700",
-                      "letterSpacing": 0.5
-                    },
-                    {
-                      "type": "text",
-                      "id": "LuBnA",
-                      "name": "H Reps",
-                      "fill": "$ink-muted",
-                      "textGrowth": "fixed-width",
-                      "width": 48,
-                      "content": "REPS",
-                      "textAlign": "center",
-                      "fontFamily": "$font-body",
-                      "fontSize": 10,
-                      "fontWeight": "700",
-                      "letterSpacing": 0.5
-                    },
-                    {
-                      "type": "frame",
-                      "id": "o8oJw",
-                      "name": "H Check Spacer",
-                      "width": 28,
-                      "height": 10
+                      "type": "icon",
+                      "id": "DmhQ5",
+                      "name": "Rest Timer",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "timer",
+                      "library": "lucide",
+                      "fill": "$ink"
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "ahy9z",
-                  "name": "Sets List",
+                  "id": "jqKuh",
+                  "name": "Rest Texts",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 8,
+                  "gap": 2,
                   "children": [
                     {
-                      "id": "GIwFp",
-                      "type": "ref",
-                      "ref": "beSCi",
-                      "name": "Set 1",
-                      "width": "fill_container",
-                      "fill": "#E8F7F0",
-                      "descendants": {
-                        "OzYtv": {
-                          "content": "1"
-                        },
-                        "mDPyg": {
-                          "content": "16.5 kg × 12"
-                        },
-                        "VSPNs": {
-                          "content": "16.5"
-                        },
-                        "S8uGJ": {
-                          "content": "12"
-                        },
-                        "bf1Ta": {
-                          "fill": "$mint-soft"
-                        },
-                        "bNKkP": {
-                          "enabled": true,
-                          "fill": "$ink"
-                        }
-                      }
+                      "type": "text",
+                      "id": "dA7LM",
+                      "name": "Rest Hint",
+                      "fill": "$ink-muted",
+                      "content": "REST BETWEEN EXERCISES",
+                      "fontFamily": "$font-body",
+                      "fontSize": 10,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
                     },
                     {
-                      "id": "pTzLR",
-                      "type": "ref",
-                      "ref": "beSCi",
-                      "name": "Set 2",
-                      "width": "fill_container",
-                      "fill": "#E8F7F0",
-                      "descendants": {
-                        "OzYtv": {
-                          "content": "2"
-                        },
-                        "mDPyg": {
-                          "content": "16.5 kg × 12"
-                        },
-                        "VSPNs": {
-                          "content": "16.5"
-                        },
-                        "S8uGJ": {
-                          "content": "12"
-                        },
-                        "bf1Ta": {
-                          "fill": "$mint-soft"
-                        },
-                        "bNKkP": {
-                          "enabled": true,
-                          "fill": "$ink"
-                        }
-                      }
-                    },
-                    {
-                      "id": "yqrLK",
-                      "type": "ref",
-                      "ref": "beSCi",
-                      "name": "Set 3",
-                      "width": "fill_container",
-                      "fill": "#FFE8E2",
-                      "stroke": "$coral",
-                      "strokeWidth": 1.5,
-                      "descendants": {
-                        "OzYtv": {
-                          "content": "3"
-                        },
-                        "mDPyg": {
-                          "content": "17.5 kg × 10"
-                        },
-                        "VSPNs": {
-                          "content": "17.5"
-                        },
-                        "S8uGJ": {
-                          "content": "10"
-                        },
-                        "bf1Ta": {
-                          "fill": "$beige-soft"
-                        },
-                        "bNKkP": {
-                          "enabled": false,
-                          "fill": "$ink-muted"
-                        }
-                      }
-                    },
-                    {
-                      "id": "zHS5j",
-                      "type": "ref",
-                      "ref": "beSCi",
-                      "name": "Set 4",
-                      "width": "fill_container",
-                      "fill": "$white",
-                      "descendants": {
-                        "OzYtv": {
-                          "content": "4"
-                        },
-                        "mDPyg": {
-                          "content": "17.5 kg × 10"
-                        },
-                        "VSPNs": {
-                          "content": "—",
-                          "fill": "$ink-muted"
-                        },
-                        "S8uGJ": {
-                          "content": "—",
-                          "fill": "$ink-muted"
-                        },
-                        "bf1Ta": {
-                          "fill": "$beige-soft"
-                        },
-                        "bNKkP": {
-                          "enabled": false,
-                          "fill": "$ink-muted"
-                        }
-                      }
+                      "type": "text",
+                      "id": "SnyLa",
+                      "name": "Rest Label",
+                      "fill": "$ink",
+                      "content": "120s chronometer",
+                      "fontFamily": "$font-body",
+                      "fontSize": 15,
+                      "fontWeight": "600"
                     }
                   ]
                 }
@@ -2119,89 +2626,23 @@
             },
             {
               "type": "frame",
-              "id": "t93Og",
-              "name": "Rest Timer",
+              "id": "AfS0S",
+              "name": "Exercise Switcher",
               "width": "fill_container",
-              "fill": "$ink",
-              "cornerRadius": 18,
-              "gap": 12,
-              "padding": [
-                14,
-                16
-              ],
-              "justifyContent": "space_between",
+              "gap": 8,
               "alignItems": "center",
               "children": [
                 {
                   "type": "frame",
-                  "id": "QoY5G",
-                  "name": "Rest Left",
-                  "gap": 10,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "lnFJR",
-                      "name": "Rest Icon Wrap",
-                      "width": 36,
-                      "height": 36,
-                      "fill": "#FFFFFF22",
-                      "cornerRadius": 999,
-                      "justifyContent": "center",
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "icon",
-                          "id": "anEyY",
-                          "name": "Rest Icon",
-                          "width": 18,
-                          "height": 18,
-                          "icon": "hourglass",
-                          "library": "lucide",
-                          "fill": "$coral"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "frame",
-                      "id": "IxeTX",
-                      "name": "Rest Texts",
-                      "layout": "vertical",
-                      "gap": 2,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "y3D3X",
-                          "name": "Rest Label",
-                          "fill": "$coral",
-                          "content": "REST",
-                          "fontFamily": "$font-body",
-                          "fontSize": 11,
-                          "fontWeight": "700",
-                          "letterSpacing": 0.6
-                        },
-                        {
-                          "type": "text",
-                          "id": "jfEyL",
-                          "name": "Rest Time",
-                          "fill": "$white",
-                          "content": "0:48",
-                          "fontFamily": "$font-display",
-                          "fontSize": 22,
-                          "fontWeight": "700"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "T3DNmf",
-                  "name": "Skip Rest",
-                  "fill": "$white",
-                  "cornerRadius": 999,
+                  "id": "kuAS9",
+                  "name": "Bench Press Chip",
+                  "height": 36,
+                  "fill": "$ink",
+                  "cornerRadius": "$radius-pill",
+                  "stroke": "$ink",
+                  "strokeWidth": 1,
                   "padding": [
-                    8,
+                    0,
                     14
                   ],
                   "justifyContent": "center",
@@ -2209,10 +2650,94 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "VlCks",
-                      "name": "Skip Label",
+                      "id": "l2gX9",
+                      "name": "Bench Press Label",
+                      "fill": "$white",
+                      "content": "Bench Press",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bcpLe",
+                  "name": "Incline DB Chip",
+                  "height": 36,
+                  "fill": "$white",
+                  "cornerRadius": "$radius-pill",
+                  "stroke": "$sand-soft",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jJtSA",
+                      "name": "Incline DB Label",
                       "fill": "$ink",
-                      "content": "Skip",
+                      "content": "Incline DB",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DbY9P",
+                  "name": "OHP Chip",
+                  "height": 36,
+                  "fill": "$white",
+                  "cornerRadius": "$radius-pill",
+                  "stroke": "$sand-soft",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QQaPM",
+                      "name": "OHP Label",
+                      "fill": "$ink",
+                      "content": "OHP",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "w485O",
+                  "name": "Pushdown Chip",
+                  "height": 36,
+                  "fill": "$white",
+                  "cornerRadius": "$radius-pill",
+                  "stroke": "$sand-soft",
+                  "strokeWidth": 1,
+                  "padding": [
+                    0,
+                    14
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Jy1Ct",
+                      "name": "Pushdown Label",
+                      "fill": "$ink",
+                      "content": "Pushdown",
                       "fontFamily": "$font-body",
                       "fontSize": 13,
                       "fontWeight": "600"
@@ -2223,245 +2748,122 @@
             },
             {
               "type": "frame",
-              "id": "Kwl6C",
-              "name": "Next Exercise",
+              "id": "b5ou2",
+              "name": "Exercise Panel",
               "width": "fill_container",
-              "height": 48,
               "fill": "$white",
-              "cornerRadius": 16,
-              "stroke": "$sand-soft",
-              "strokeWidth": 1,
-              "gap": 8,
-              "justifyContent": "center",
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "U4Elys",
-                  "name": "Next Label",
-                  "fill": "$ink",
-                  "content": "Next Exercise",
-                  "fontFamily": "$font-body",
-                  "fontSize": 15,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "icon",
-                  "id": "eEHCj",
-                  "name": "Next Icon",
-                  "width": 16,
-                  "height": 16,
-                  "icon": "chevron-right",
-                  "library": "lucide",
-                  "fill": "$ink"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "IQaPB",
-              "name": "Up Next",
-              "width": "fill_container",
+              "cornerRadius": 22,
               "layout": "vertical",
-              "gap": 8,
+              "gap": 12,
+              "padding": 16,
               "children": [
                 {
-                  "type": "text",
-                  "id": "x13m7",
-                  "name": "Up Next Title",
-                  "fill": "$ink-muted",
-                  "content": "Up next",
-                  "fontFamily": "$font-body",
-                  "fontSize": 13,
-                  "fontWeight": "600"
-                },
-                {
                   "type": "frame",
-                  "id": "u6b4ET",
-                  "name": "Incline Dumbbell Press",
+                  "id": "zyOLf",
+                  "name": "Panel Header",
                   "width": "fill_container",
-                  "height": 56,
-                  "fill": "$beige-soft",
-                  "cornerRadius": 16,
-                  "padding": [
-                    0,
-                    16
-                  ],
+                  "gap": 8,
                   "justifyContent": "space_between",
-                  "alignItems": "center",
                   "children": [
                     {
                       "type": "frame",
-                      "id": "w7YY9M",
-                      "name": "Left",
+                      "id": "y4YBGr",
+                      "name": "Title Wrap",
                       "width": "fill_container",
                       "layout": "vertical",
-                      "gap": 2,
+                      "gap": 4,
                       "children": [
                         {
                           "type": "text",
-                          "id": "ytTWz",
-                          "name": "Name",
+                          "id": "t7Q6iM",
+                          "name": "Exercise Title",
                           "fill": "$ink",
-                          "content": "Incline Dumbbell Press",
+                          "content": "Bench Press",
                           "fontFamily": "$font-display",
-                          "fontSize": 15,
+                          "fontSize": 26,
                           "fontWeight": "700"
                         },
                         {
                           "type": "text",
-                          "id": "l3LMKE",
-                          "name": "Meta",
+                          "id": "pXJXF",
+                          "name": "Exercise Meta",
                           "fill": "$ink-muted",
-                          "content": "3 sets  ·  Chest",
+                          "content": "Chest  ·  4 sets  ·  90s",
                           "fontFamily": "$font-body",
-                          "fontSize": 12,
+                          "fontSize": 13,
                           "fontWeight": "500"
                         }
                       ]
                     },
                     {
-                      "type": "icon",
-                      "id": "azozw",
-                      "name": "Chevron",
-                      "width": 18,
-                      "height": 18,
-                      "icon": "chevron-down",
-                      "library": "lucide",
-                      "fill": "$ink-muted"
+                      "type": "frame",
+                      "id": "BBSIi",
+                      "name": "Complete Button",
+                      "height": 36,
+                      "fill": "$bg",
+                      "cornerRadius": "$radius-pill",
+                      "stroke": "$sand-soft",
+                      "strokeWidth": 1.5,
+                      "gap": 6,
+                      "padding": [
+                        0,
+                        12
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "c5hcP",
+                          "name": "Complete Icon",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "fill": "$ink-muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ehbTn",
+                          "name": "Complete Label",
+                          "fill": "$ink-muted",
+                          "content": "Complete",
+                          "fontFamily": "$font-body",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        }
+                      ]
                     }
                   ]
                 },
                 {
-                  "type": "frame",
-                  "id": "a90wkT",
-                  "name": "Overhead Press",
-                  "width": "fill_container",
-                  "height": 56,
-                  "fill": "$lilac-soft",
-                  "cornerRadius": 16,
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "s1XUZ",
-                      "name": "Left",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 2,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "Y6xuZ3",
-                          "name": "Name",
-                          "fill": "$ink",
-                          "content": "Overhead Press",
-                          "fontFamily": "$font-display",
-                          "fontSize": 15,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "CnjUZ",
-                          "name": "Meta",
-                          "fill": "$ink-muted",
-                          "content": "3 sets  ·  Shoulders",
-                          "fontFamily": "$font-body",
-                          "fontSize": 12,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon",
-                      "id": "UkqxP",
-                      "name": "Chevron",
-                      "width": 18,
-                      "height": 18,
-                      "icon": "chevron-down",
-                      "library": "lucide",
-                      "fill": "$ink-muted"
-                    }
-                  ]
+                  "id": "Dmqte",
+                  "type": "ref",
+                  "ref": "beSCi",
+                  "name": "Set 1",
+                  "width": "fill_container"
                 },
                 {
-                  "type": "frame",
-                  "id": "jPzVZ",
-                  "name": "Tricep Pushdown",
-                  "width": "fill_container",
-                  "height": 56,
-                  "fill": "$mint-soft",
-                  "cornerRadius": 16,
-                  "padding": [
-                    0,
-                    16
-                  ],
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "DJKWY",
-                      "name": "Left",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 2,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "pTKqx",
-                          "name": "Name",
-                          "fill": "$ink",
-                          "content": "Tricep Pushdown",
-                          "fontFamily": "$font-display",
-                          "fontSize": 15,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "e3jJoS",
-                          "name": "Meta",
-                          "fill": "$ink-muted",
-                          "content": "3 sets  ·  Triceps",
-                          "fontFamily": "$font-body",
-                          "fontSize": 12,
-                          "fontWeight": "500"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "icon",
-                      "id": "nCbwm",
-                      "name": "Chevron",
-                      "width": 18,
-                      "height": 18,
-                      "icon": "chevron-down",
-                      "library": "lucide",
-                      "fill": "$ink-muted"
-                    }
-                  ]
+                  "id": "lYo5Z",
+                  "type": "ref",
+                  "ref": "beSCi",
+                  "name": "Set 2",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "APZMs",
+                  "type": "ref",
+                  "ref": "beSCi",
+                  "name": "Set 3",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "OibzU",
+                  "type": "ref",
+                  "ref": "beSCi",
+                  "name": "Set 4",
+                  "width": "fill_container"
                 }
               ]
-            },
-            {
-              "id": "yoYnW",
-              "type": "ref",
-              "ref": "Ce9jX",
-              "name": "Finish CTA",
-              "width": "fill_container",
-              "descendants": {
-                "mgsYJ": {
-                  "enabled": false
-                },
-                "X90vWj": {
-                  "content": "Finish Workout"
-                }
-              }
             }
           ]
         }

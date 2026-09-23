@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Pencil, Timer } from 'lucide-react-native';
+import { Check, Pencil, Timer } from 'lucide-react-native';
 import { Href, router } from 'expo-router';
 import { ScreenContainer } from '@/components/common/ScreenContainer';
 import { AppHeader } from '@/components/common/AppHeader';
@@ -11,7 +11,7 @@ import { ExerciseSwitcher } from '@/features/routines/components/ExerciseSwitche
 import { RestChronometer } from '@/features/routines/components/RestChronometer';
 import { useRoutineStore } from '@/store/routineStore';
 import { useRestChronometer } from '@/features/routines/hooks/useRestChronometer';
-import { formatRestLabel } from '@/utils/format';
+import { formatRestLabel, countCompletionsThisWeek, formatWeeklyProgress, isWeeklyTargetMet } from '@/utils/format';
 import { colors, fontFamilies, fontSizes, iconSizes, radius, spacing } from '@/theme';
 
 interface RoutineDetailScreenProps {
@@ -24,6 +24,9 @@ export function RoutineDetailScreen({ routineId }: RoutineDetailScreenProps) {
   );
   const updateSetField = useRoutineStore((state) => state.updateSetField);
   const setExerciseCompleted = useRoutineStore((state) => state.setExerciseCompleted);
+  const toggleRoutineSessionThisWeek = useRoutineStore(
+    (state) => state.toggleRoutineSessionThisWeek,
+  );
 
   const [selectedExerciseId, setSelectedExerciseId] = useState<string | null>(null);
   const {
@@ -78,6 +81,9 @@ export function RoutineDetailScreen({ routineId }: RoutineDetailScreenProps) {
   const currentRoutine = routine;
   const currentExercise = selectedExercise;
   const restBetweenExercises = currentRoutine.restBetweenExercisesSeconds;
+  const timesPerWeek = Math.max(1, currentRoutine.timesPerWeek);
+  const doneCount = countCompletionsThisWeek(currentRoutine.completedAtDates);
+  const targetMet = isWeeklyTargetMet(timesPerWeek, currentRoutine.completedAtDates);
 
   function handleToggleSetComplete(setId: string) {
     const setItem = currentExercise.sets.find((item) => item.id === setId);
@@ -113,6 +119,34 @@ export function RoutineDetailScreen({ routineId }: RoutineDetailScreenProps) {
   return (
     <ScreenContainer>
       <AppHeader title={currentRoutine.name} onBack={() => router.back()} />
+
+      <Pressable
+        onPress={() => void toggleRoutineSessionThisWeek(currentRoutine.id)}
+        style={[styles.weekBanner, targetMet && styles.weekBannerDone]}
+        accessibilityRole="button"
+        accessibilityLabel={
+          targetMet
+            ? 'Undo last session this week'
+            : `Mark session done this week, ${doneCount} of ${timesPerWeek}`
+        }
+      >
+        <View style={[styles.weekIcon, targetMet && styles.weekIconDone]}>
+          <Check
+            size={iconSizes.md}
+            color={targetMet ? colors.white : colors.inkMuted}
+            strokeWidth={targetMet ? 3 : 2}
+            pointerEvents="none"
+          />
+        </View>
+        <View style={styles.weekTextWrap}>
+          <Text style={styles.weekHint}>THIS WEEK</Text>
+          <Text style={styles.weekLabel}>
+            {targetMet
+              ? `${formatWeeklyProgress(doneCount, timesPerWeek)} done — tap to undo last`
+              : `${formatWeeklyProgress(doneCount, timesPerWeek)} done — tap to add session`}
+          </Text>
+        </View>
+      </Pressable>
 
       <SecondaryButton label="Edit Routine" icon={Pencil} onPress={goToEdit} />
 
@@ -169,6 +203,47 @@ export function RoutineDetailScreen({ routineId }: RoutineDetailScreenProps) {
 const styles = StyleSheet.create({
   panel: {
     gap: spacing.md,
+  },
+  weekBanner: {
+    minHeight: 56,
+    borderRadius: radius.md,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.sandSoft,
+    paddingHorizontal: spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  weekBannerDone: {
+    borderColor: colors.ink,
+    backgroundColor: colors.bgCream,
+  },
+  weekIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: radius.full,
+    backgroundColor: colors.beigeSoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  weekIconDone: {
+    backgroundColor: colors.ink,
+  },
+  weekTextWrap: {
+    flex: 1,
+  },
+  weekHint: {
+    fontFamily: fontFamilies.bodySemiBold,
+    fontSize: fontSizes.xs,
+    letterSpacing: 1,
+    color: colors.inkMuted,
+    marginBottom: 2,
+  },
+  weekLabel: {
+    fontFamily: fontFamilies.bodySemiBold,
+    fontSize: fontSizes.base,
+    color: colors.ink,
   },
   restButton: {
     minHeight: 56,

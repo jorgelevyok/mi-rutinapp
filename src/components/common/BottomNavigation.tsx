@@ -30,7 +30,8 @@ export function BottomNavigation({ active, onChange }: BottomNavigationProps) {
             <Icon
               size={iconSizes['2xl']}
               color={isActive ? colors.coral : colors.inkMuted}
-              fill={isActive ? colors.coral : 'transparent'}
+              fill="transparent"
+              strokeWidth={isActive ? 2.4 : 2}
             />
             <Text style={[styles.label, isActive && styles.labelActive]}>{tab.label}</Text>
           </Pressable>

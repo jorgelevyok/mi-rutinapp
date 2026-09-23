@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Plus, Timer } from 'lucide-react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Minus, Plus, Repeat, Timer } from 'lucide-react-native';
 import type {
   ExerciseFormValues,
   RoutineFormMode,
@@ -20,6 +20,7 @@ import { AddExerciseModal } from './AddExerciseModal';
 import { ExerciseEditorCard } from './ExerciseEditorCard';
 
 const DEFAULT_REST_BETWEEN_EXERCISES = 120;
+const DEFAULT_TIMES_PER_WEEK = 1;
 
 interface RoutineFormProps {
   mode: RoutineFormMode;
@@ -32,6 +33,9 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
   const [name, setName] = useState(initialValues?.name ?? '');
   const [restBetweenExercisesSeconds, setRestBetweenExercisesSeconds] = useState(
     initialValues?.restBetweenExercisesSeconds ?? DEFAULT_REST_BETWEEN_EXERCISES,
+  );
+  const [timesPerWeek, setTimesPerWeek] = useState(
+    initialValues?.timesPerWeek ?? DEFAULT_TIMES_PER_WEEK,
   );
   const [exercises, setExercises] = useState<WorkoutExercise[]>(initialValues?.exercises ?? []);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -108,67 +112,126 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
       name: trimmed,
       exercises,
       restBetweenExercisesSeconds: Math.max(0, restBetweenExercisesSeconds),
+      timesPerWeek: Math.min(7, Math.max(1, timesPerWeek)),
     });
   }
 
   return (
     <>
-      <ScreenContainer>
+      <ScreenContainer scrollable={false} contentStyle={styles.screen}>
         <AppHeader title={mode === 'create' ? 'Create Routine' : 'Edit Routine'} onBack={onBack} />
 
-        <AppTextInput
-          label="ROUTINE NAME"
-          value={name}
-          onChangeText={setName}
-          placeholder="Push Day"
-        />
+        <ScrollView
+          style={styles.scroll}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="always"
+        >
+          <AppTextInput
+            label="ROUTINE NAME"
+            value={name}
+            onChangeText={setName}
+            placeholder="Push Day"
+          />
 
-        <View style={styles.restField}>
-          <Text style={styles.restLabel}>REST BETWEEN EXERCISES</Text>
-          <View style={styles.restInput}>
-            <View style={styles.restLeft}>
-              <View style={styles.restIcon}>
-                <Timer size={iconSizes.md} color={colors.ink} />
-              </View>
-              <TextInput
-                value={String(restBetweenExercisesSeconds)}
-                onChangeText={(value) => {
-                  const parsed = Number.parseInt(value.replace(/[^0-9]/g, ''), 10);
-                  setRestBetweenExercisesSeconds(Number.isNaN(parsed) ? 0 : parsed);
-                }}
-                keyboardType="number-pad"
-                style={styles.restValue}
-              />
-            </View>
-            <Text style={styles.restUnit}>seconds</Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <SectionHeader title="Exercises" meta={exercises.length} />
-          <View style={styles.list}>
-            {exercises.map((exercise, index) => (
-              <Pressable key={exercise.id} onPress={() => openEditModal(exercise.id)}>
-                <ExerciseEditorCard
-                  exercise={exercise}
-                  accentColor={routineAccentColors[index % routineAccentColors.length]}
-                  onDelete={() => handleDeleteExercise(exercise.id)}
-                  onMoveUp={() => moveExercise(index, -1)}
-                  onMoveDown={() => moveExercise(index, 1)}
-                  canMoveUp={index > 0}
-                  canMoveDown={index < exercises.length - 1}
+          <View style={styles.restField}>
+            <Text style={styles.restLabel}>REST BETWEEN EXERCISES</Text>
+            <View style={styles.restInput}>
+              <View style={styles.restLeft}>
+                <View style={styles.restIcon}>
+                  <Timer size={iconSizes.md} color={colors.ink} />
+                </View>
+                <TextInput
+                  value={String(restBetweenExercisesSeconds)}
+                  onChangeText={(value) => {
+                    const parsed = Number.parseInt(value.replace(/[^0-9]/g, ''), 10);
+                    setRestBetweenExercisesSeconds(Number.isNaN(parsed) ? 0 : parsed);
+                  }}
+                  keyboardType="number-pad"
+                  style={styles.restValue}
                 />
-              </Pressable>
-            ))}
+              </View>
+              <Text style={styles.restUnit}>seconds</Text>
+            </View>
           </View>
-          <SecondaryButton label="Add Exercise" icon={Plus} onPress={openCreateModal} />
-        </View>
 
-        <PrimaryButton
-          label={mode === 'create' ? 'Save Routine' : 'Save Changes'}
-          onPress={handleSubmit}
-          disabled={!name.trim() || exercises.length === 0}
-        />
+          <View style={styles.restField}>
+            <Text style={styles.restLabel}>TIMES PER WEEK</Text>
+            <View style={styles.timesRow}>
+              <View style={styles.timesLeft}>
+                <View style={[styles.restIcon, styles.timesIcon]}>
+                  <Repeat size={iconSizes.md} color={colors.ink} />
+                </View>
+                <Text style={styles.timesValue}>{timesPerWeek}</Text>
+                <Text style={styles.restUnit}>
+                  {timesPerWeek === 1 ? 'time' : 'times'}
+                </Text>
+              </View>
+              <View style={styles.stepper}>
+                <Pressable
+                  onPress={() => setTimesPerWeek((current) => Math.max(1, current - 1))}
+                  disabled={timesPerWeek <= 1}
+                  style={({ pressed }) => [
+                    styles.stepButton,
+                    timesPerWeek <= 1 && styles.stepButtonDisabled,
+                    pressed && timesPerWeek > 1 && styles.stepButtonPressed,
+                  ]}
+                  accessibilityRole="button"
+                  accessibilityLabel="Decrease times per week"
+                >
+                  <Minus
+                    size={iconSizes.md}
+                    color={timesPerWeek <= 1 ? colors.inkMuted : colors.ink}
+                  />
+                </Pressable>
+                <Pressable
+                  onPress={() => setTimesPerWeek((current) => Math.min(7, current + 1))}
+                  disabled={timesPerWeek >= 7}
+                  style={({ pressed }) => [
+                    styles.stepButton,
+                    timesPerWeek >= 7 && styles.stepButtonDisabled,
+                    pressed && timesPerWeek < 7 && styles.stepButtonPressed,
+                  ]}
+                  accessibilityRole="button"
+                  accessibilityLabel="Increase times per week"
+                >
+                  <Plus
+                    size={iconSizes.md}
+                    color={timesPerWeek >= 7 ? colors.inkMuted : colors.ink}
+                  />
+                </Pressable>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.section}>
+            <SectionHeader title="Exercises" meta={exercises.length} />
+            <View style={styles.list}>
+              {exercises.map((exercise, index) => (
+                <Pressable key={exercise.id} onPress={() => openEditModal(exercise.id)}>
+                  <ExerciseEditorCard
+                    exercise={exercise}
+                    accentColor={routineAccentColors[index % routineAccentColors.length]}
+                    onDelete={() => handleDeleteExercise(exercise.id)}
+                    onMoveUp={() => moveExercise(index, -1)}
+                    onMoveDown={() => moveExercise(index, 1)}
+                    canMoveUp={index > 0}
+                    canMoveDown={index < exercises.length - 1}
+                  />
+                </Pressable>
+              ))}
+            </View>
+          </View>
+        </ScrollView>
+
+        <View style={styles.footer}>
+          <SecondaryButton label="Add Exercise" icon={Plus} onPress={openCreateModal} />
+          <PrimaryButton
+            label={mode === 'create' ? 'Save Routine' : 'Save Changes'}
+            onPress={handleSubmit}
+            disabled={!name.trim() || exercises.length === 0}
+          />
+        </View>
       </ScreenContainer>
 
       <AddExerciseModal
@@ -198,6 +261,24 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
 }
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    gap: spacing.md,
+    paddingBottom: spacing.md,
+  },
+  scroll: {
+    flex: 1,
+  },
+  scrollContent: {
+    gap: spacing.lg,
+    paddingBottom: spacing.md,
+  },
+  footer: {
+    gap: 12,
+    paddingTop: spacing.sm,
+    borderTopWidth: 1,
+    borderTopColor: colors.sandSoft,
+  },
   section: {
     gap: 12,
   },
@@ -238,6 +319,54 @@ const styles = StyleSheet.create({
     backgroundColor: colors.coralSoft,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  timesIcon: {
+    backgroundColor: colors.mintSoft,
+  },
+  timesRow: {
+    minHeight: 52,
+    borderRadius: radius.md,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.sandSoft,
+    paddingHorizontal: spacing.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  timesLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    flex: 1,
+  },
+  timesValue: {
+    fontFamily: fontFamilies.bodySemiBold,
+    fontSize: fontSizes.lg,
+    color: colors.ink,
+    minWidth: 16,
+  },
+  stepper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  stepButton: {
+    width: 36,
+    height: 36,
+    borderRadius: radius.full,
+    backgroundColor: colors.bg,
+    borderWidth: 1,
+    borderColor: colors.sandSoft,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  stepButtonDisabled: {
+    opacity: 0.45,
+  },
+  stepButtonPressed: {
+    opacity: 0.75,
   },
   restValue: {
     flex: 1,
