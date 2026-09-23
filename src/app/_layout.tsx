@@ -48,7 +48,7 @@ export default function RootLayout() {
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: colors.bg },
-          animation: 'slide_from_right',
+          animation: 'none',
         }}
       />
     </>
