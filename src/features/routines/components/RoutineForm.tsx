@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Minus, Plus, Repeat, Timer } from 'lucide-react-native';
+import { Trash2, Minus, Plus, Repeat, Timer } from 'lucide-react-native';
 import type {
   ExerciseFormValues,
   RoutineFormMode,
@@ -13,6 +13,7 @@ import { colors, fontFamilies, fontSizes, iconSizes, radius, spacing } from '@/t
 import { AppHeader } from '@/components/common/AppHeader';
 import { ScreenContainer } from '@/components/common/ScreenContainer';
 import { AppTextInput } from '@/components/ui/AppTextInput';
+import { ConfirmModal } from '@/components/ui/ConfirmModal';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { SecondaryButton } from '@/components/ui/SecondaryButton';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -27,9 +28,16 @@ interface RoutineFormProps {
   initialValues?: RoutineFormValues;
   onBack: () => void;
   onSubmit: (values: RoutineFormValues) => void;
+  onDeleteRoutine?: () => void;
 }
 
-export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFormProps) {
+export function RoutineForm({
+  mode,
+  initialValues,
+  onBack,
+  onSubmit,
+  onDeleteRoutine,
+}: RoutineFormProps) {
   const [name, setName] = useState(initialValues?.name ?? '');
   const [restBetweenExercisesSeconds, setRestBetweenExercisesSeconds] = useState(
     initialValues?.restBetweenExercisesSeconds ?? DEFAULT_REST_BETWEEN_EXERCISES,
@@ -40,6 +48,10 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
   const [exercises, setExercises] = useState<WorkoutExercise[]>(initialValues?.exercises ?? []);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingExerciseId, setEditingExerciseId] = useState<string | null>(null);
+  const [exercisePendingDelete, setExercisePendingDelete] = useState<WorkoutExercise | null>(
+    null,
+  );
+  const [isDeleteRoutineVisible, setIsDeleteRoutineVisible] = useState(false);
 
   const editingExercise = exercises.find((exercise) => exercise.id === editingExerciseId);
 
@@ -92,6 +104,21 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
 
   function handleDeleteExercise(id: string) {
     setExercises((current) => current.filter((exercise) => exercise.id !== id));
+    setExercisePendingDelete(null);
+  }
+
+  function requestDeleteExercise(exercise: WorkoutExercise) {
+    setExercisePendingDelete(exercise);
+  }
+
+  function confirmDeleteExercise() {
+    if (!exercisePendingDelete) return;
+    handleDeleteExercise(exercisePendingDelete.id);
+  }
+
+  function confirmDeleteRoutine() {
+    setIsDeleteRoutineVisible(false);
+    onDeleteRoutine?.();
   }
 
   function moveExercise(index: number, direction: -1 | 1) {
@@ -212,7 +239,7 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
                   <ExerciseEditorCard
                     exercise={exercise}
                     accentColor={routineAccentColors[index % routineAccentColors.length]}
-                    onDelete={() => handleDeleteExercise(exercise.id)}
+                    onDelete={() => requestDeleteExercise(exercise)}
                     onMoveUp={() => moveExercise(index, -1)}
                     onMoveDown={() => moveExercise(index, 1)}
                     canMoveUp={index > 0}
@@ -231,6 +258,13 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
             onPress={handleSubmit}
             disabled={!name.trim() || exercises.length === 0}
           />
+          {mode === 'edit' && onDeleteRoutine ? (
+            <SecondaryButton
+              label="Delete Routine"
+              icon={Trash2}
+              onPress={() => setIsDeleteRoutineVisible(true)}
+            />
+          ) : null}
         </View>
       </ScreenContainer>
 
@@ -255,6 +289,32 @@ export function RoutineForm({ mode, initialValues, onBack, onSubmit }: RoutineFo
               }
             : undefined
         }
+      />
+
+      <ConfirmModal
+        visible={exercisePendingDelete !== null}
+        title="Delete exercise?"
+        message={
+          exercisePendingDelete
+            ? `Remove “${exercisePendingDelete.name}” from this routine? This can’t be undone.`
+            : ''
+        }
+        confirmLabel="Delete"
+        onConfirm={confirmDeleteExercise}
+        onCancel={() => setExercisePendingDelete(null)}
+      />
+
+      <ConfirmModal
+        visible={isDeleteRoutineVisible}
+        title="Delete routine?"
+        message={
+          name.trim()
+            ? `Delete “${name.trim()}” and all its exercises? This can’t be undone.`
+            : 'Delete this routine and all its exercises? This can’t be undone.'
+        }
+        confirmLabel="Delete"
+        onConfirm={confirmDeleteRoutine}
+        onCancel={() => setIsDeleteRoutineVisible(false)}
       />
     </>
   );

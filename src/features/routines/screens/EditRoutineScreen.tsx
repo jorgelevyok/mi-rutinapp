@@ -11,12 +11,17 @@ interface EditRoutineScreenProps {
 }
 
 export function EditRoutineScreen({ routineId }: EditRoutineScreenProps) {
-  const { getRoutineById, updateRoutine } = useRoutines();
+  const { getRoutineById, updateRoutine, deleteRoutine } = useRoutines();
   const routine = getRoutineById(routineId);
 
   async function handleSubmit(values: RoutineFormValues) {
     await updateRoutine(routineId, values);
     router.replace(`/routine/${routineId}` as Href);
+  }
+
+  async function handleDelete() {
+    await deleteRoutine(routineId);
+    router.replace('/home' as Href);
   }
 
   if (!routine) {
@@ -39,6 +44,7 @@ export function EditRoutineScreen({ routineId }: EditRoutineScreenProps) {
       }}
       onBack={() => router.back()}
       onSubmit={handleSubmit}
+      onDeleteRoutine={handleDelete}
     />
   );
 }
